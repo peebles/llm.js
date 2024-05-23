@@ -20,6 +20,7 @@
 * [Mistral](https://docs.mistral.ai/platform/endpoints/): `mistral-medium`, `mistral-small`, `mistral-tiny`
 * [llamafile](https://github.com/Mozilla-Ocho/llamafile): `LLaVa-1.5`, `TinyLlama-1.1B`, `Phi-2`, ...
 * [Ollama](https://ollama.com/): `llama-3`, `llama-2`, `gemma`, `dolphin-phi`, ... 
+* [BedrockMistral](https://aws.amazon.com/bedrock/): `mistral-large`, `mistral-7b`, `mixtral-8x7b`
 
 ```javascript
 await LLM("the color of the sky is", { model: "gpt-4" }); // blue
@@ -28,7 +29,7 @@ await LLM("the color of the sky is", { model: "gpt-4" }); // blue
 **Features**
 
 - Easy to use
-- Same API for all LLMs (`OpenAI`, `Google`, `Anthropic`, `Mistral`, `Groq`, `Llamafile`, `Ollama`, `Together`)
+- Same API for all LLMs (`OpenAI`, `Google`, `Anthropic`, `Mistral`, `Groq`, `Llamafile`, `Ollama`, `Together`, `Bedrock`)
 - Chat (Message History)
 - JSON
 - Streaming
@@ -60,6 +61,8 @@ export TOGETHER_API_KEY=...
 ```
 
 For local models like [llamafile](https://github.com/Mozilla-Ocho/llamafile) and [Ollama](https://ollama.com/), ensure an instance is running.
+
+For AWS Bedrock, your AWS credentials should be established in the environment before execution.
 
 ## Usage
 
@@ -174,6 +177,7 @@ The OpenAI message format is used, and converted on-the-fly for specific service
 * [Mistral](https://docs.mistral.ai/platform/endpoints/): `mistral-medium`, `mistral-small`, `mistral-tiny`
 * [llamafile](https://github.com/Mozilla-Ocho/llamafile): `LLaVa 1.5`, `Mistral-7B-Instruct`, `Mixtral-8x7B-Instruct`, `WizardCoder-Python-34B`, `TinyLlama-1.1B`, `Phi-2`, ...
 * [Ollama](https://github.com/ollama/ollama): `Llama 2`, `Mistral`, `Code Llama`, `Gemma`, `Dolphin Phi`, ...
+* [BedrockMistral](https://aws.amazon.com/bedrock/): `mistral-large`, `mistral-7b`, `mixtral-8x7b`
 
 `LLM.js` can guess the LLM provider based on the model, or you can specify it explicitly.
 
@@ -357,6 +361,7 @@ llm.assistant("OK, I will remember your favorite color is blue.");
 * **`MODELDEPLOYER`** `<string>`: `modeldeployer`
 * **`OLLAMA`** `<string>`: `ollama`
 * **`TOGETHER`** `<string>`: `together`
+* **`BEDROCKMISTRAL`** `<string>`: `bedrock-mistral`
 * **`parsers`** `<object>`: List of default `LLM.js` parsers
   * **codeBlock**(`<blockType>`)(`<content>`) `<function>` — Parses out a Markdown codeblock
   * **json**(`<content>`) `<function>` — Parses out overall JSON or a Markdown JSON codeblock

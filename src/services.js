@@ -7,4 +7,5 @@ export const MODELDEPLOYER = "modeldeployer";
 export const OLLAMA = "ollama";
 export const GROQ = "groq";
 export const TOGETHER = "together";
-export const SERVICES = [LLAMAFILE, OPENAI, ANTHROPIC, MISTRAL, GOOGLE, MODELDEPLOYER, OLLAMA, GROQ, TOGETHER];
+export const BEDROCKMISTRAL = "bedrock-mistral";
+export const SERVICES = [LLAMAFILE, OPENAI, ANTHROPIC, MISTRAL, GOOGLE, MODELDEPLOYER, OLLAMA, GROQ, TOGETHER, BEDROCKMISTRAL];

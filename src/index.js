@@ -10,7 +10,8 @@ import Ollama from "./ollama.js";
 import Groq from "./groq.js";
 import Together from "./together.js";
 import ModelDeployer from "./modeldeployer.js";
-import { LLAMAFILE, OPENAI, ANTHROPIC, MISTRAL, MODELDEPLOYER, GOOGLE, OLLAMA, GROQ, TOGETHER } from "./services.js";
+import BedrockMistral from "./bedrock-mistral.js";
+import { LLAMAFILE, OPENAI, ANTHROPIC, MISTRAL, MODELDEPLOYER, GOOGLE, OLLAMA, GROQ, TOGETHER, BEDROCKMISTRAL } from "./services.js";
 
 import { serviceForModel } from "./utils.js";
 import * as parsers from "./parsers.js";
@@ -97,6 +98,9 @@ LLM.prototype.send = async function (opts = {}) {
             break;
         case TOGETHER:
             response = await Together(this.messages, options);
+            break;
+        case BEDROCKMISTRAL:
+            response = await BedrockMistral(this.messages, options);
             break;
         default:
             throw new Error(`Unknown service ${options.service}`);
@@ -194,6 +198,8 @@ LLM.modelForService = function (service) {
         return Groq.defaultModel;
     } else if (service === TOGETHER) {
         return Together.defaultModel;
+    } else if (service === BEDROCKMISTRAL) {
+        return BedrockMistral.defaultModel;
     }
 
     return null;
@@ -208,5 +214,6 @@ LLM.MODELDEPLOYER = MODELDEPLOYER;
 LLM.OLLAMA = OLLAMA;
 LLM.GROQ = GROQ;
 LLM.TOGETHER = TOGETHER;
+LLM.BEDROCKMISTRAL = BEDROCKMISTRAL;
 
 LLM.parsers = parsers;
