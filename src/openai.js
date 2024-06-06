@@ -4,6 +4,7 @@ const log = debug("llm.js:openai");
 import { OpenAI as OpenAIClient } from "openai";
 
 const MODEL = "gpt-4-turbo-preview";
+const ENDPOINT = "https://api.openai.com/v1";
 
 export default async function OpenAI(messages, options = {}) {
     let apiKey = null;
@@ -17,7 +18,11 @@ export default async function OpenAI(messages, options = {}) {
     if (!apiKey) { throw new Error("No OpenAI API key provided") }
 
     const dangerouslyAllowBrowser = options.dangerouslyAllowBrowser || false;
-    const openai = new OpenAIClient({ apiKey, dangerouslyAllowBrowser });
+    const openai = new OpenAIClient({
+      apiKey,
+      baseURL: options.endpoint || process.env.OPENAI_API_KEY || ENDPOINT,
+      dangerouslyAllowBrowser
+    });
 
     if (!messages || messages.length === 0) { throw new Error("No messages provided") }
     if (!options.model) { options.model = MODEL }
