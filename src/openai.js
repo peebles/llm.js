@@ -120,7 +120,7 @@ OpenAI.parseStream = async function* (response, usage) {
         if (chunk.choices[0].finish_reason) {
             continue;
         }
-        yield chunk.choices[0].delta.content;
+        yield chunk.choices[0].delta.content || "";
     }
 };
 
