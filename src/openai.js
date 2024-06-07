@@ -115,10 +115,6 @@ OpenAI.parseStream = async function* (response, usage) {
     for await (const chunk of response) {
         if (usage && chunk.usage) {
             await usage(chunk.usage);
-            continue;
-        }
-        if (chunk.choices[0].finish_reason) {
-            continue;
         }
         yield chunk.choices[0].delta.content || "";
     }
